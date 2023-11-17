@@ -25,10 +25,8 @@ Make it shake:
 
 ```rust
 fn shake(mut shake: Query<&mut Shake>, keys: Res<Input<KeyCode>>) {
-    let mut shake = shake.single_mut();
-
     if keys.just_pressed(KeyCode::Space) {
-        shake.add_trauma(0.2);
+        shake.single_mut().add_trauma(0.2);
     }
 }
 ```
