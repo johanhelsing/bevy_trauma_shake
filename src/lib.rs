@@ -105,18 +105,8 @@ fn shake(mut shakes: Query<(&mut Shake, &mut Transform, Option<&ShakeSettings>)>
                 fbm_simplex_2d(noise_pos + vec2(0., 2.), settings.octaves, lacunarity, gain),
             );
 
-        // let shake_rotation = Quat::from_euler(
-        //     EulerRot::YXZ,
-        //     0.0,
-        //     0.0,
-        //     settings.max_roll
-        //         * trauma_amount
-        //         * settings.random_sources[2].rand(time.elapsed_seconds()),
-        // );
         transform.translation.x += offset.x;
         transform.translation.y += offset.y;
-        info!("shaking: {}", transform.translation);
-        // transform.rotation = shake_rotation;
     }
 }
 
