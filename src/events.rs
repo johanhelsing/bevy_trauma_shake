@@ -10,6 +10,14 @@ impl Plugin for TraumaEventsPlugin {
     }
 }
 
+/// Event for adding trauma to all shakes
+/// ```
+/// # use bevy::prelude::*;
+/// # use bevy_trauma_shake::prelude::*;
+/// fn add_shake(mut trauma: EventWriter<TraumaEvent>) {
+///     trauma.send(0.2.into());
+/// }
+/// ```
 #[derive(Event, Debug, Clone, Copy, Reflect)]
 pub struct TraumaEvent(pub f32);
 
@@ -20,6 +28,7 @@ impl From<f32> for TraumaEvent {
 }
 
 impl TraumaEvent {
+    /// Maximum (1) trauma
     pub const MAX: TraumaEvent = TraumaEvent(1.);
 }
 

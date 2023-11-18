@@ -1,3 +1,6 @@
+#![warn(missing_docs)]
+#![doc = include_str!("../README.md")]
+
 use bevy::{
     math::vec2,
     prelude::*,
@@ -23,6 +26,7 @@ pub use commands::TraumaCommands;
 #[cfg(feature = "system_param")]
 pub use system_param::Shakes;
 
+/// Everything you need to use the plugin
 pub mod prelude {
     #[cfg(feature = "system_param")]
     pub use super::Shakes;
@@ -33,6 +37,14 @@ pub mod prelude {
     pub use super::{Shake, ShakeSettings, TraumaPlugin};
 }
 
+/// Plugin for adding trauma-based shakes to 2d cameras (or other things).
+///
+/// ```
+/// # use bevy::prelude::App;
+/// # use bevy_trauma_shake::prelude::*;
+/// # let mut app = App::new();
+/// app.add_plugins(TraumaPlugin);
+/// ```
 pub struct TraumaPlugin;
 
 impl Plugin for TraumaPlugin {
@@ -76,7 +88,7 @@ impl Default for ShakeSettings {
 }
 
 impl ShakeSettings {
-    pub const DEFAULT: ShakeSettings = ShakeSettings {
+    const DEFAULT: ShakeSettings = ShakeSettings {
         trauma_power: 2.,
         decay_per_second: 0.8,
         amplitude: 100.,
@@ -85,6 +97,11 @@ impl ShakeSettings {
     };
 }
 
+/// Makes the entity shake according to applied trauma.
+///
+/// The shake happens during [`PostUpdate`], and the entity is restored to its
+/// original translation in [`PreUpdate`]. This means that you can still control
+/// the camera like you normally would inside update.
 #[derive(Component, Reflect, Default, Clone, Debug)]
 pub struct Shake {
     trauma: f32,
@@ -92,13 +109,12 @@ pub struct Shake {
 }
 
 impl Shake {
+    /// Adds the specified trauma. Trauma is clamped between 0 and 1, and decays
+    /// over time according to [`ShakeSettings::decay_per_second`].
     pub fn add_trauma(&mut self, amount: f32) {
         self.trauma = (self.trauma + amount).clamp(0., 1.);
     }
 }
-
-#[derive(Component, Reflect, Clone, Copy)]
-pub struct OriginalTranslation(pub Vec3);
 
 fn shake(mut shakes: Query<(&mut Shake, &mut Transform, Option<&ShakeSettings>)>, time: Res<Time>) {
     for (mut shake, mut transform, settings) in &mut shakes {

@@ -1,8 +1,18 @@
 use crate::Shake;
 use bevy::{ecs::system::Command, prelude::*};
 
+/// Extension trait for [`Command`], adding commands for easily applying trauma
+/// fire-and-forget-style.
 pub trait TraumaCommands {
     /// Applies the given trauma to all `Shake`s
+    /// ```
+    /// # use bevy::prelude::*;
+    /// use bevy_trauma_shake::prelude::*;
+    ///
+    /// fn add_shake(mut commands: Commands) {
+    ///     commands.add_trauma(0.2);
+    /// }
+    /// ```
     fn add_trauma(&mut self, trauma: f32);
 }
 
