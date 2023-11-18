@@ -7,23 +7,30 @@
 
 Add camera shakes to your 2d Bevy game with three lines of code.
 
+## Goals
+
+- Zero configuration required
+- Sensible defaults
+- Batteries included (default noise)
+- Compatible with bevy_pancam
+
 ## Usage
 
 Add the plugin:
 
-```rust
+```rust ignore
 app.add_plugins(TraumaPlugin);
 ```
 
 Simply add a component to your camera:
 
-```rust
+```rust ignore
 commands.spawn((Camera2dBundle::default(), Shake::default()));
 ```
 
 Make it shake:
 
-```rust
+```rust ignore
 fn shake(mut shake: Query<&mut Shake>, keys: Res<Input<KeyCode>>) {
     if keys.just_pressed(KeyCode::Space) {
         shake.single_mut().add_trauma(0.2);
@@ -31,11 +38,44 @@ fn shake(mut shake: Query<&mut Shake>, keys: Res<Input<KeyCode>>) {
 }
 ```
 
+There is also a convenience system param for applying trauma to all `Shake`s:
+
+```rust ignore
+fn shake(mut shake: Shakes, keys: Res<Input<KeyCode>>) {
+    if keys.just_pressed(KeyCode::Space) {
+        shakes.add_trauma(0.2);
+    }
+}
+```
+
+And an event, if you prefer that:
+
+```rust ignore
+fn shake(mut trauma: EventWriter<TraumaEvent>, keys: Res<Input<KeyCode>>) {
+    if keys.just_pressed(KeyCode::Key1) {
+        trauma.send(0.2.into());
+    }
+}
+```
+
+And even a command:
+
+```rust ignore
+fn shake(mut commands: Commands, keys: Res<Input<KeyCode>>) {
+    if keys.just_pressed(KeyCode::Key1) {
+        info!("Adding small trauma");
+        commands.add_trauma(0.2);
+    }
+}
+```
+
+Maybe I went a little overboard and I should remove one of those ways, in any case, they can be toggled through the features: `system_param`, `events`, `commands`,
+
 ## Optional configuration
 
 Optionally add `ShakeSettings`, if you're not happy with the defaults.
 
-```rust
+```rust ignore
     commands.spawn((
         Name::new("Camera"),
         Camera2dBundle::default(),
@@ -50,14 +90,6 @@ Optionally add `ShakeSettings`, if you're not happy with the defaults.
         PanCam::default(),
     ));
 ```
-
-## Goals
-
-- Minimal dependencies
-- Zero configuration required
-- Sensible defaults
-- Batteries included (default noise)
-- Works with bevy_pancam
 
 ## Bevy Version Support
 
