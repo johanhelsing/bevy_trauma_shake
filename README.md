@@ -69,7 +69,7 @@ fn shake(mut commands: Commands, keys: Res<Input<KeyCode>>) {
 }
 ```
 
-Maybe I went a little overboard and I should remove one of those ways, in any case, they can be toggled through the features: `system_param`, `events`, `commands`,
+Maybe I went a little overboard and I should remove one of those ways, in any case, they can be toggled through the features: `system_param`, `events`, `commands`.
 
 ## Optional configuration
 
@@ -98,6 +98,7 @@ The `main` branch targets the latest bevy release.
 |bevy|bevy_trauma_shake|
 |----|-----------------|
 |0.12|main             |
+|0.12|0.1              |
 
 ## License
 
