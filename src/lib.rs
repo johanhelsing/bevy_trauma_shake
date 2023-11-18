@@ -5,13 +5,21 @@ use bevy::{
 };
 use noisy_bevy::fbm_simplex_2d;
 
+#[cfg(feature = "commands")]
+mod commands;
+
 #[cfg(feature = "events")]
 mod events;
 
 #[cfg(feature = "events")]
 pub use events::TraumaEvent;
 
+#[cfg(feature = "commands")]
+pub use commands::TraumaCommands;
+
 pub mod prelude {
+    #[cfg(feature = "commands")]
+    pub use super::TraumaCommands;
     #[cfg(feature = "events")]
     pub use super::TraumaEvent;
     pub use super::{Shake, ShakeSettings, TraumaPlugin};

@@ -9,8 +9,9 @@ keywords = ["gamedev", "bevy", "camera"]
 repository = "https://github.com/johanhelsing/bevy_trauma_shake"
 
 [features]
-default = ["events"]
+default = ["events", "commands"]
 events = []
+commands = []
 
 [dependencies]
 bevy = { version = "0.12", default-features = false }
