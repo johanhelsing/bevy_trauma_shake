@@ -5,7 +5,15 @@ use bevy::{
 };
 use noisy_bevy::fbm_simplex_2d;
 
+#[cfg(feature = "events")]
+mod events;
+
+#[cfg(feature = "events")]
+pub use events::TraumaEvent;
+
 pub mod prelude {
+    #[cfg(feature = "events")]
+    pub use super::TraumaEvent;
     pub use super::{Shake, ShakeSettings, TraumaPlugin};
 }
 
@@ -22,6 +30,9 @@ impl Plugin for TraumaPlugin {
                     .before(propagate_transforms)
                     .before(sync_simple_transforms),
             );
+
+        #[cfg(feature = "events")]
+        app.add_plugins(events::TraumaEventsPlugin);
     }
 }
 
