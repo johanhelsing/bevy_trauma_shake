@@ -11,13 +11,21 @@ mod commands;
 #[cfg(feature = "events")]
 mod events;
 
+#[cfg(feature = "system_param")]
+mod system_param;
+
 #[cfg(feature = "events")]
 pub use events::TraumaEvent;
 
 #[cfg(feature = "commands")]
 pub use commands::TraumaCommands;
 
+#[cfg(feature = "system_param")]
+pub use system_param::Shakes;
+
 pub mod prelude {
+    #[cfg(feature = "system_param")]
+    pub use super::Shakes;
     #[cfg(feature = "commands")]
     pub use super::TraumaCommands;
     #[cfg(feature = "events")]
