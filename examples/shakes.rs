@@ -39,18 +39,18 @@ fn setup(mut commands: Commands) {
     }
 }
 
-fn shake(mut shakes: Shakes, keys: Res<Input<KeyCode>>) {
-    if keys.just_pressed(KeyCode::Key1) {
+fn shake(mut shakes: Shakes, keys: Res<ButtonInput<KeyCode>>) {
+    if keys.just_pressed(KeyCode::Digit1) {
         info!("Adding small trauma");
         shakes.add_trauma(0.2);
     }
 
-    if keys.just_pressed(KeyCode::Key2) {
+    if keys.just_pressed(KeyCode::Digit2) {
         info!("Adding medium trauma");
         shakes.add_trauma(0.5);
     }
 
-    if keys.pressed(KeyCode::Key3) {
+    if keys.pressed(KeyCode::Digit3) {
         info!("Sustaining max trauma");
         shakes.add_trauma(1.);
     }
