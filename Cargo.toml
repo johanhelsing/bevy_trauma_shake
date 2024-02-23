@@ -3,7 +3,7 @@ authors = ["Johan Helsing <johanhelsing@gmail.com>"]
 categories = ["game-development"]
 name = "bevy_trauma_shake"
 license = "MIT OR Apache-2.0"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 description = "A plugin for shaking 2d cameras"
 keywords = ["gamedev", "bevy", "camera"]
@@ -16,16 +16,16 @@ commands = []
 system_param = []
 
 [dependencies]
-bevy = { version = "0.12", default-features = false }
-noisy_bevy = "0.5"
+bevy = { version = "0.13", default-features = false }
+noisy_bevy = "0.6"
 
 [dev-dependencies]
-bevy = { version = "0.12", default-features = false, features = [
+bevy = { version = "0.13", default-features = false, features = [
   "bevy_winit",
   "bevy_sprite",
   "webgl2",
   "wayland",
 ] }
-bevy_pancam = { version = "0.10", features = ["bevy_egui"] }
+bevy_pancam = { version = "0.11", features = ["bevy_egui"] }
 rand = "0.8"
-bevy-inspector-egui = { version = "0.21", default-features = false }
+bevy-inspector-egui = { version = "0.23", default-features = false }
