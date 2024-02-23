@@ -24,7 +24,7 @@ bevy = { version = "0.12", default-features = false, features = [
   "bevy_winit",
   "bevy_sprite",
   "webgl2",
-  "wayland",
+  "x11",
 ] }
 bevy_pancam = { version = "0.10", features = ["bevy_egui"] }
 rand = "0.8"
