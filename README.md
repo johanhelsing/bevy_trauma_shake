@@ -31,7 +31,7 @@ commands.spawn((Camera2dBundle::default(), Shake::default()));
 Make it shake:
 
 ```rust ignore
-fn shake(mut shake: Query<&mut Shake>, keys: Res<Input<KeyCode>>) {
+fn shake(mut shake: Query<&mut Shake>, keys: Res<ButtonInput<KeyCode>>) {
     if keys.just_pressed(KeyCode::Space) {
         shake.single_mut().add_trauma(0.2);
     }
@@ -41,7 +41,7 @@ fn shake(mut shake: Query<&mut Shake>, keys: Res<Input<KeyCode>>) {
 There is also a convenience system param for applying trauma to all `Shake`s:
 
 ```rust ignore
-fn shake(mut shake: Shakes, keys: Res<Input<KeyCode>>) {
+fn shake(mut shake: Shakes, keys: Res<ButtonInput<KeyCode>>) {
     if keys.just_pressed(KeyCode::Space) {
         shakes.add_trauma(0.2);
     }
@@ -51,8 +51,8 @@ fn shake(mut shake: Shakes, keys: Res<Input<KeyCode>>) {
 And an event, if you prefer that:
 
 ```rust ignore
-fn shake(mut trauma: EventWriter<TraumaEvent>, keys: Res<Input<KeyCode>>) {
-    if keys.just_pressed(KeyCode::Key1) {
+fn shake(mut trauma: EventWriter<TraumaEvent>, keys: Res<ButtonInput<KeyCode>>) {
+    if keys.just_pressed(KeyCode::Space) {
         trauma.send(0.2.into());
     }
 }
@@ -61,8 +61,8 @@ fn shake(mut trauma: EventWriter<TraumaEvent>, keys: Res<Input<KeyCode>>) {
 And even a command:
 
 ```rust ignore
-fn shake(mut commands: Commands, keys: Res<Input<KeyCode>>) {
-    if keys.just_pressed(KeyCode::Key1) {
+fn shake(mut commands: Commands, keys: Res<ButtonInput<KeyCode>>) {
+    if keys.just_pressed(KeyCode::Space) {
         info!("Adding small trauma");
         commands.add_trauma(0.2);
     }

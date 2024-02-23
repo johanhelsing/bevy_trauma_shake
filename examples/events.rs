@@ -42,18 +42,18 @@ fn setup(mut commands: Commands) {
     }
 }
 
-fn shake(mut trauma: EventWriter<TraumaEvent>, keys: Res<Input<KeyCode>>) {
-    if keys.just_pressed(KeyCode::Key1) {
+fn shake(mut trauma: EventWriter<TraumaEvent>, keys: Res<ButtonInput<KeyCode>>) {
+    if keys.just_pressed(KeyCode::Digit1) {
         info!("Adding small trauma");
         trauma.send(0.2.into());
     }
 
-    if keys.just_pressed(KeyCode::Key2) {
+    if keys.just_pressed(KeyCode::Digit2) {
         info!("Adding medium trauma");
         trauma.send(TraumaEvent(0.5));
     }
 
-    if keys.pressed(KeyCode::Key3) {
+    if keys.pressed(KeyCode::Digit3) {
         info!("Sustaining max trauma");
         trauma.send(TraumaEvent::MAX);
     }
