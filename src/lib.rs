@@ -54,10 +54,7 @@ impl Plugin for TraumaPlugin {
             .add_systems(PreUpdate, restore)
             .add_systems(
                 PostUpdate,
-                shake
-                    .before(propagate_transforms)
-                    .before(sync_simple_transforms),
-            );
+                (shake, propagate_transforms, sync_simple_transforms).chain());
 
         #[cfg(feature = "events")]
         app.add_plugins(events::TraumaEventsPlugin);
