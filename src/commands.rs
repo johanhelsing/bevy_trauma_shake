@@ -18,7 +18,7 @@ pub trait TraumaCommands {
 
 impl TraumaCommands for Commands<'_, '_> {
     fn add_trauma(&mut self, trauma: f32) {
-        self.add(AddTraumaCommand(trauma));
+        self.queue(AddTraumaCommand(trauma));
     }
 }
 

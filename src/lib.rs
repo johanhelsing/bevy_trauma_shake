@@ -121,7 +121,7 @@ fn shake(mut shakes: Query<(&mut Shake, &mut Transform, Option<&ShakeSettings>)>
         let settings = settings.unwrap_or(&ShakeSettings::DEFAULT);
 
         let trauma = f32::max(
-            shake.trauma - settings.decay_per_second * time.delta_seconds(),
+            shake.trauma - settings.decay_per_second * time.delta_secs(),
             0.0,
         );
 
@@ -140,7 +140,7 @@ fn shake(mut shakes: Query<(&mut Shake, &mut Transform, Option<&ShakeSettings>)>
 
         let lacunarity = 2.;
         let gain = 0.5;
-        let noise_pos = vec2(settings.frequency * time.elapsed_seconds(), 0.);
+        let noise_pos = vec2(settings.frequency * time.elapsed_secs(), 0.);
         let offset = settings.amplitude
             * trauma_amount
             * Vec2::new(

@@ -12,7 +12,7 @@ fn main() {
 
 fn setup(mut commands: Commands) {
     // Simply add a `Shake` component to your camera
-    commands.spawn((Camera2dBundle::default(), Shake::default()));
+    commands.spawn((Camera2d, Shake::default()));
 
     // generate some tiles to look at
     let n = 20;
@@ -24,15 +24,14 @@ fn setup(mut commands: Commands) {
             let x = x as f32 * spacing - offset;
             let y = y as f32 * spacing - offset;
             let color = Color::hsl(240., random::<f32>() * 0.3, random::<f32>() * 0.3);
-            commands.spawn(SpriteBundle {
-                sprite: Sprite {
+            commands.spawn((
+                Sprite {
                     color,
                     custom_size,
                     ..default()
                 },
-                transform: Transform::from_xyz(x, y, 0.),
-                ..default()
-            });
+                Transform::from_xyz(x, y, 0.),
+            ));
         }
     }
 }
