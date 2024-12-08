@@ -25,15 +25,15 @@ app.add_plugins(TraumaPlugin);
 Simply add a component to your camera:
 
 ```rust ignore
-commands.spawn((Camera2dBundle::default(), Shake::default()));
+commands.spawn((Camera2d, Shake::default()));
 ```
 
 Make it shake:
 
 ```rust ignore
-fn shake(mut shake: Query<&mut Shake>, keys: Res<ButtonInput<KeyCode>>) {
+fn shake(mut shake: Single<&mut Shake>, keys: Res<ButtonInput<KeyCode>>) {
     if keys.just_pressed(KeyCode::Space) {
-        shake.single_mut().add_trauma(0.2);
+        shake.add_trauma(0.2);
     }
 }
 ```
