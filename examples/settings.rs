@@ -20,7 +20,7 @@ fn main() {
 fn setup(mut commands: Commands) {
     commands.spawn((
         Name::new("Camera"),
-        Camera2dBundle::default(),
+        Camera2d,
         Shake::default(),
         ShakeSettings {
             amplitude: 200.,
@@ -42,15 +42,14 @@ fn setup(mut commands: Commands) {
             let x = x as f32 * spacing - offset;
             let y = y as f32 * spacing - offset;
             let color = Color::hsl(240., random::<f32>() * 0.3, random::<f32>() * 0.3);
-            commands.spawn(SpriteBundle {
-                sprite: Sprite {
+            commands.spawn((
+                Sprite {
                     color,
                     custom_size,
                     ..default()
                 },
-                transform: Transform::from_xyz(x, y, 0.),
-                ..default()
-            });
+                Transform::from_xyz(x, y, 0.),
+            ));
         }
     }
 }
