@@ -1,7 +1,7 @@
 use bevy::prelude::*;
 use bevy_pancam::{PanCam, PanCamPlugin};
 use bevy_trauma_shake::{prelude::*, TraumaPlugin};
-use rand::prelude::random;
+use rand::random;
 
 fn main() {
     App::new()

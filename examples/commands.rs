@@ -5,7 +5,7 @@
 
 use bevy::prelude::*;
 use bevy_trauma_shake::prelude::*;
-use rand::prelude::random;
+use rand::random;
 
 fn main() {
     App::new()

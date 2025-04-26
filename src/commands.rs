@@ -1,5 +1,5 @@
 use crate::Shake;
-use bevy::{ecs::world::Command, prelude::*};
+use bevy::prelude::*;
 
 /// Extension trait for [`Command`], adding commands for easily applying trauma
 /// fire-and-forget-style.

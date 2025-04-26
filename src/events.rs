@@ -15,7 +15,7 @@ impl Plugin for TraumaEventsPlugin {
 /// # use bevy::prelude::*;
 /// # use bevy_trauma_shake::prelude::*;
 /// fn add_shake(mut trauma: EventWriter<TraumaEvent>) {
-///     trauma.send(0.2.into());
+///     trauma.write(0.2.into());
 /// }
 /// ```
 #[derive(Event, Debug, Clone, Copy, Reflect)]

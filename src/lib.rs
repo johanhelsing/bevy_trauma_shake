@@ -1,11 +1,7 @@
 #![warn(missing_docs)]
 #![doc = include_str!("../README.md")]
 
-use bevy::{
-    math::vec2,
-    prelude::*,
-    transform::systems::{propagate_transforms, sync_simple_transforms},
-};
+use bevy::{math::vec2, prelude::*};
 use noisy_bevy::fbm_simplex_2d;
 
 #[cfg(feature = "commands")]
@@ -54,9 +50,7 @@ impl Plugin for TraumaPlugin {
             .add_systems(PreUpdate, restore)
             .add_systems(
                 PostUpdate,
-                shake
-                    .before(propagate_transforms)
-                    .before(sync_simple_transforms),
+                shake.before(TransformSystem::TransformPropagate),
             );
 
         #[cfg(feature = "events")]
