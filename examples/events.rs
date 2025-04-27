@@ -5,7 +5,7 @@
 
 use bevy::prelude::*;
 use bevy_trauma_shake::prelude::*;
-use rand::prelude::random;
+use rand::random;
 
 fn main() {
     App::new()
@@ -44,16 +44,16 @@ fn setup(mut commands: Commands) {
 fn shake(mut trauma: EventWriter<TraumaEvent>, keys: Res<ButtonInput<KeyCode>>) {
     if keys.just_pressed(KeyCode::Digit1) {
         info!("Adding small trauma");
-        trauma.send(0.2.into());
+        trauma.write(0.2.into());
     }
 
     if keys.just_pressed(KeyCode::Digit2) {
         info!("Adding medium trauma");
-        trauma.send(TraumaEvent(0.5));
+        trauma.write(TraumaEvent(0.5));
     }
 
     if keys.pressed(KeyCode::Digit3) {
         info!("Sustaining max trauma");
-        trauma.send(TraumaEvent::MAX);
+        trauma.write(TraumaEvent::MAX);
     }
 }

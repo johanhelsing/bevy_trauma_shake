@@ -2,7 +2,7 @@ use bevy::prelude::*;
 use bevy_inspector_egui::quick::FilterQueryInspectorPlugin;
 use bevy_pancam::{PanCam, PanCamPlugin};
 use bevy_trauma_shake::prelude::*;
-use rand::prelude::random;
+use rand::random;
 
 fn main() {
     App::new()

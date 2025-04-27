@@ -16,18 +16,19 @@ commands = []
 system_param = []
 
 [dependencies]
-bevy = { version = "0.15", default-features = false }
-noisy_bevy = "0.8"
+bevy = { version = "0.16", default-features = false }
+noisy_bevy = "0.9"
 
 [dev-dependencies]
-bevy = { version = "0.15", default-features = false, features = [
+bevy = { version = "0.16", default-features = false, features = [
   "bevy_winit",
   "bevy_sprite",
+  "bevy_log",
   "webgl2",
   "x11",
 ] }
-bevy_pancam = { version = "0.16", features = ["bevy_egui"] }
-rand = "0.8"
-bevy-inspector-egui = { version = "0.28", default-features = false, features = [
+bevy_pancam = { version = "0.18", features = ["bevy_egui"] }
+rand = "0.9"
+bevy-inspector-egui = { version = "0.31", default-features = false, features = [
   "bevy_render",
 ] }
