@@ -17,7 +17,7 @@ system_param = []
 
 [dependencies]
 bevy = { version = "0.16", default-features = false }
-noisy_bevy = "0.8"
+noisy_bevy = "0.9"
 
 [dev-dependencies]
 bevy = { version = "0.16", default-features = false, features = [
