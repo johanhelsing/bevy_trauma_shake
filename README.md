@@ -97,7 +97,8 @@ The `main` branch targets the latest bevy release.
 
 |bevy|bevy_trauma_shake|
 |----|-----------------|
-|0.15|0.4, main|
+|0.16|0.5, main|
+|0.15|0.4|
 |0.14|0.3|
 |0.13|0.2|
 |0.12|0.1|
