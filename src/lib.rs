@@ -115,7 +115,7 @@ impl Shake {
         self.trauma = amount.clamp(0., 1.);
     }
 
-    /// Gets the current trauma.
+    /// Gets the current trauma
     pub fn trauma(&self) -> f32 {
         self.trauma
     }
