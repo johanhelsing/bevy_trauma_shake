@@ -51,9 +51,9 @@ fn shake(mut shake: Shakes, keys: Res<ButtonInput<KeyCode>>) {
 And an event, if you prefer that:
 
 ```rust ignore
-fn shake(mut trauma: EventWriter<TraumaEvent>, keys: Res<ButtonInput<KeyCode>>) {
+fn shake(mut commands: Commands, keys: Res<ButtonInput<KeyCode>>) {
     if keys.just_pressed(KeyCode::Space) {
-        trauma.send(0.2.into());
+        commands.trigger(TraumaEvent(0.2));
     }
 }
 ```
@@ -77,8 +77,7 @@ Optionally add `ShakeSettings`, if you're not happy with the defaults.
 
 ```rust ignore
     commands.spawn((
-        Name::new("Camera"),
-        Camera2dBundle::default(),
+        Camera2d,
         Shake::default(),
         ShakeSettings {
             amplitude: 200.,
