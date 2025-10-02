@@ -41,7 +41,7 @@ fn setup(mut commands: Commands) {
     }
 }
 
-fn shake(mut trauma: EventWriter<TraumaEvent>, keys: Res<ButtonInput<KeyCode>>) {
+fn shake(mut trauma: MessageWriter<TraumaEvent>, keys: Res<ButtonInput<KeyCode>>) {
     if keys.just_pressed(KeyCode::Digit1) {
         info!("Adding small trauma");
         trauma.write(0.2.into());

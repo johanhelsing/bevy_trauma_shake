@@ -48,10 +48,7 @@ impl Plugin for TraumaPlugin {
         app.register_type::<Shake>()
             .register_type::<ShakeSettings>()
             .add_systems(PreUpdate, restore)
-            .add_systems(
-                PostUpdate,
-                shake.before(TransformSystem::TransformPropagate),
-            );
+            .add_systems(PostUpdate, shake.before(TransformSystems::Propagate));
 
         #[cfg(feature = "events")]
         app.add_plugins(events::TraumaEventsPlugin);

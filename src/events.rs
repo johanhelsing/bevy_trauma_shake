@@ -5,20 +5,20 @@ pub struct TraumaEventsPlugin;
 
 impl Plugin for TraumaEventsPlugin {
     fn build(&self, app: &mut App) {
-        app.add_event::<TraumaEvent>()
+        app.add_message::<TraumaEvent>()
             .add_systems(PostUpdate, apply_trauma_events.before(shake));
     }
 }
 
-/// Event for adding trauma to all shakes
+/// Message for adding trauma to all shakes
 /// ```
 /// # use bevy::prelude::*;
 /// # use bevy_trauma_shake::prelude::*;
-/// fn add_shake(mut trauma: EventWriter<TraumaEvent>) {
+/// fn add_shake(mut trauma: MessageWriter<TraumaEvent>) {
 ///     trauma.write(0.2.into());
 /// }
 /// ```
-#[derive(Event, Debug, Clone, Copy, Reflect)]
+#[derive(Message, Debug, Clone, Copy, Reflect)]
 pub struct TraumaEvent(pub f32);
 
 impl From<f32> for TraumaEvent {
@@ -32,7 +32,7 @@ impl TraumaEvent {
     pub const MAX: TraumaEvent = TraumaEvent(1.);
 }
 
-fn apply_trauma_events(mut events: EventReader<TraumaEvent>, mut shakes: Query<&mut Shake>) {
+fn apply_trauma_events(mut events: MessageReader<TraumaEvent>, mut shakes: Query<&mut Shake>) {
     let mut trauma = 0.;
 
     for event in events.read() {
