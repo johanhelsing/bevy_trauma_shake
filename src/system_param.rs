@@ -21,4 +21,11 @@ impl Shakes<'_, '_> {
             shake.add_trauma(trauma);
         }
     }
+
+    /// Sets the trauma to a specified value for all [`Shake`]s
+    pub fn set_trauma(&mut self, trauma: f32) {
+        for mut shake in &mut self.0 {
+            shake.set_trauma(trauma);
+        }
+    }
 }
