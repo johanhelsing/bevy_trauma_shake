@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use bevy_inspector_egui::quick::FilterQueryInspectorPlugin;
+use bevy_inspector_egui::{bevy_egui::EguiPlugin, quick::FilterQueryInspectorPlugin};
 use bevy_pancam::{PanCam, PanCamPlugin};
 use bevy_trauma_shake::prelude::*;
 use rand::random;
@@ -10,6 +10,7 @@ fn main() {
             DefaultPlugins,
             TraumaPlugin,
             PanCamPlugin,
+            EguiPlugin::default(),
             FilterQueryInspectorPlugin::<With<Shake>>::default(),
         ))
         .add_systems(Startup, setup)
