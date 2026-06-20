@@ -25,6 +25,8 @@ impl TraumaCommands for Commands<'_, '_> {
 struct AddTraumaCommand(f32);
 
 impl Command for AddTraumaCommand {
+    type Out = ();
+
     fn apply(self, world: &mut World) {
         for mut shake in world.query::<&mut Shake>().iter_mut(world) {
             shake.add_trauma(self.0);
